@@ -26,6 +26,9 @@ from conf import *
 # for Debugging Purpose
 import pickle
 
+# for store ID/PW
+import base64
+
 ####################################################
 # Base Parameters
 PARAMS = [
