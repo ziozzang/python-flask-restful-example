@@ -89,7 +89,7 @@ class Some(Resource):
   def delete(self, param0):
     abort_if_ip_not_allowed()
     try:
-      # Check user existance
+      pass
     except:
       abort(404, "Failed - No such User")
     try:
@@ -101,7 +101,7 @@ class Some(Resource):
 
 
 ####################################################
-api.add_resource(Users, '/Some/<string:param0>')
+api.add_resource(Some, '/Some/<string:param0>')
 
 ####################################################
 if __name__ == '__main__':
