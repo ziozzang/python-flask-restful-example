@@ -15,4 +15,4 @@ WORKDIR /opt/
 COPY ./*.py /opt/
 
 EXPOSE 5000
-CMD ["/usr/bin/python", "/opt/server.py"]
+CMD ["/usr/bin/python3", "/opt/server.py"]
