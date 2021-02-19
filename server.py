@@ -32,8 +32,7 @@ import base64
 ####################################################
 # Base Parameters
 PARAMS = [
-  "allowed_ip", # IP Allowed
-  "", #
+  "param1", # IP Allowed
 ]
 
 ####################################################
@@ -44,7 +43,7 @@ api = Api(app)
 
 # Request Parsing
 parser = reqparse.RequestParser()
-parser.add_argument('user_id')
+parser.add_argument('param0')
 for i in PARAMS:
   parser.add_argument(i)
 
@@ -78,20 +77,16 @@ def abort_if_ip_not_allowed():
     abort(403, "Your IP is not allowed to call API: (Detected IP - {})".format(detected_ip))
 
 ####################################################
-class Users(Resource):
-  # User info get
-  def get(self, user_id):
-    # Read User Status
+class Some(Resource):
+  def get(self, param0):
     abort_if_ip_not_allowed()
-    return get_dn(user_id)
-
-  def put(self, user_id):
-    # Grant User Permission
+    return {'result': 'get'}
+  
+  def put(self, param0):
     abort_if_ip_not_allowed()
-    return add_user()
+    return {'result': 'put'}
 
-  def delete(self, user_id):
-    # Delete Permission
+  def delete(self, param0):
     abort_if_ip_not_allowed()
     try:
       # Check user existance
@@ -99,14 +94,14 @@ class Users(Resource):
       abort(404, "Failed - No such User")
     try:
       con.delete_s(dn) #,204
-      return {'message':"OK"}
+      return {'result':'delete'}
     except Exception as e:
       abort(500, "FAILED - %s" % (e.message,))
 
 
 
 ####################################################
-api.add_resource(Users, '/Users/<string:user_id>')
+api.add_resource(Users, '/Some/<string:param0>')
 
 ####################################################
 if __name__ == '__main__':
