@@ -7,7 +7,7 @@ RUN mkdir -p /opt && \
     apt-get update && \
     apt upgrade -fy && \
     apt-get install -y \
-       python3-flask-restful python3-netaddr && \
+       python3-flask-restful python3-netaddr python3-requests && \
     apt-get autoremove -fy && \
     rm -rf /var/lib/apt/lists/*
 
