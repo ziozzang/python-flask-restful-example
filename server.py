@@ -52,12 +52,12 @@ for i in PARAMS:
 # Get Real IP, Behind Reverse Proxy.
 def get_real_ip():
   ipaddr = request.remote_addr
-  if "X-Forwarded-For" in request.headers.keys():
-    if ipaddr != request.headers["X-Forwarded-For"]:
-      ipaddr = request.headers["X-Forwarded-For"].strip()
-  if "X-Real-Ip" in request.headers.keys():
-    if ipaddr != request.headers["X-Real-Ip"]:
-      ipaddr = request.headers["X-Real-Ip"].strip()
+  if ("X-Forwarded-For" in request.headers.keys()
+      and ipaddr != request.headers["X-Forwarded-For"]):
+    ipaddr = request.headers["X-Forwarded-For"].strip()
+  if ("X-Real-Ip" in request.headers.keys()
+      and ipaddr != request.headers["X-Real-Ip"]):
+    ipaddr = request.headers["X-Real-Ip"].strip()
   return ipaddr
 
 # Check if IP is restricted
